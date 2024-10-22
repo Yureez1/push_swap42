@@ -6,19 +6,19 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:10 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/21 15:26:59 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:41:47 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <unistd.h>
-#include "../ft_printf.h"
-#include "../ft_printf/libft/libft.h"
+# include "../ft_printf.h"
+# include "../ft_printf/libft/libft.h"
+# include <unistd.h>
 
-# define INT_MIN −2,147,483,648
-# define INT_MAX 2,147,483,647
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 # define ERROR 0;
 # define SUCCESS 1;

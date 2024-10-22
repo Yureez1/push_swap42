@@ -6,7 +6,7 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:06 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/21 16:29:47 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:02:01 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	is_valid_int(char *str)
 {
 	long	value;
 
-	value = ft_atol(str);
 	if (str[i] == '\0')
-		errors_msg("Arguments are empty");
+		errors_msg("Arguments are empty", NULL);
+	if (str[i] == '-' || str[i] == '+')
+		i++;
 	while (str[i])
 		if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
-			errors_msg("It has to be just numbers");
+			errors_msg("Arguments must only contain digits", NULL);
 	i++;
+	value = ft_atol(str);
 	if (value < INT_MIN || value > INT_MAX)
-		errors_msg("An argument is not within the limit of int");
+		errors_msg("Argument is out of int limits", NULL);
 	return (SUCCESS);
 }
 
@@ -42,12 +44,22 @@ int	has_duplicate(int *numbers, int size)
 		while (j < size)
 		{
 			if (numbers[i] == numbers[j])
-				errors_msg("There must be no double");
+				errors_msg("There must be no double", numbers);
 			j++;
 		}
 		i++;
 	}
 	return (SUCCESS);
+}
+
+char	**split_args(char *arg)
+{
+	char	**args;
+
+	args = ft_split(arg, ' ');
+	if (!args)
+		errors_msg("Error splitting arguments.");
+	return (args);
 }
 
 // Parsing args for dup and int numbers
@@ -59,16 +71,16 @@ int	*parse_args(int argc, char **argv, int *size)
 	i = 0;
 	numbers = malloc(sizeof(int) * (argc - 1));
 	if (!numbers)
-		return (NULL);
+		errors_msg("Memory allocation failed", NULL);
 	while (i < argc - 1)
 	{
-		if (!is_valid_int(argc[i]))
-			errors_msg("Args are not valid");
+		if (!is_valid_int(argv[i]))
+			errors_msg("Args are not valid", numbers);
 		numbers[i] = ft_atoi(argv[i]);
 		i++;
 	}
 	if (has_duplicate(numbers, argc - 1))
-		errors_msg("There must be no double");
+		errors_msg("There must be no double", numbers);
 	*size = argc - 1;
 	return (numbers);
 }
