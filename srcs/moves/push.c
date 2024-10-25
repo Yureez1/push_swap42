@@ -6,11 +6,11 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:45:44 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/24 19:57:26 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:02:16 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	push(t_stack **src, t_stack **dest)
 {

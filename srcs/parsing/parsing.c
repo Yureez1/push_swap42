@@ -6,11 +6,11 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:06 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/24 19:41:47 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:02:26 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 // Check for valid int
 int	is_valid_int(char *str)

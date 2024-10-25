@@ -6,11 +6,11 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:45:47 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/24 19:57:33 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:02:11 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
 void	reverse_rotate(t_stack **stack)
 {
@@ -34,17 +34,17 @@ void	reverse_rotate(t_stack **stack)
 void	rrr(t_stack *a, t_stack *b)
 {
 	ft_printf("rrr\n");
-	reverse_rotate(a);
-	reverse_rotate(b);
+	reverse_rotate(&a);
+	reverse_rotate(&b);
 }
 
-void	ra(t_stack **a)
+void	rra(t_stack **a)
 {
 	ft_printf("rra\n");
 	reverse_rotate(a);
 }
 
-void	rb(t_stack **b)
+void	rrb(t_stack **b)
 {
 	ft_printf("rrb\n");
 	reverse_rotate(b);

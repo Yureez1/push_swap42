@@ -6,7 +6,7 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:10 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/24 19:37:30 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:01:08 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,18 @@ int					calculate_chunks(int stack_size, int chunk_size);
 int					find_max_in_chunk(t_stack **stack, int chunk_size);
 int					find_min_in_chunk(t_stack **stack, int chunk_size);
 
+/*******************
+********************
+**Stack Operations**
+********************
+********************/
+
+void				push_min_max_to_b(t_stack **a, t_stack **b, int chunk_size);
+void				sort_and_push_back_to_a(t_stack **a, t_stack **b);
+void				push_chunks_to_b(t_stack **a, t_stack **b, int stack_size);
+void				free_stack(t_stack **stack);
+
+
 /*********
 **********
 **Errors**
@@ -56,16 +68,46 @@ int					find_min_in_chunk(t_stack **stack, int chunk_size);
 
 int					errors_msg(char *message, int *numbers);
 
-/**********
-***********
-***Moves***
-***********
-***********/
+/*******
+********
+**Swap**
+********
+********/
 
 void				swap(t_stack **stack);
+void				sa(t_stack **a);
+void				sb(t_stack **b);
+
+/*******
+********
+**Push**
+********
+********/
+
 void				push(t_stack **src, t_stack **dest);
+void				pb(t_stack **a, t_stack **b);
+void				pa(t_stack **a, t_stack **b);
+
+/*********
+**********
+**Rotate**
+**********
+**********/
+
 void				rotate(t_stack **stack);
+void				ra(t_stack **a);
+void				rb(t_stack **b);
+void				rr(t_stack **a, t_stack **b);
+/*****************
+******************
+**Reverse rotate**
+******************
+******************/
+
 void				reverse_rotate(t_stack **stack);
+void				rrr(t_stack *a, t_stack *b);
+void				rra(t_stack **a);
+void				rrb(t_stack **b);
 
 /**********
 ***********
@@ -77,4 +119,5 @@ int					is_valid_int(char *str);
 int					has_duplicate(int *numbers, int size);
 char				**split_args(char *arg);
 int					*parse_args(int argc, char **argv, int *size);
+
 #endif
