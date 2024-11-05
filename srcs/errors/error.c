@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 19:32:29 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/24 19:57:55 by jbanchon         ###   ########.fr       */
+/*   Created: 2024/11/05 15:25:50 by jbanchon          #+#    #+#             */
+/*   Updated: 2024/11/05 15:31:46 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../../inc/push_swap.h"
 
-int	errors_msg(char *message, int *numbers)
+int	error_msg(t_stack **a, t_stack **b, char **argv, int string)
 {
-	if (numbers)
-		free(numbers);
-	ft_printf(RED "ERROR\n" GREY "%s\n" RESET, message);
-	exit(EXIT_FAILURE);
+	write(2, "Error\n", 6);
+	free_all(a, b, argv, string);
+	exit(1);
 }
-

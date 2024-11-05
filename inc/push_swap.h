@@ -6,7 +6,7 @@
 /*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:10 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/25 19:01:08 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:07:36 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "../ft_printf.h"
 # include "../ft_printf/libft/libft.h"
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
@@ -58,7 +58,6 @@ void				push_min_max_to_b(t_stack **a, t_stack **b, int chunk_size);
 void				sort_and_push_back_to_a(t_stack **a, t_stack **b);
 void				push_chunks_to_b(t_stack **a, t_stack **b, int stack_size);
 void				free_stack(t_stack **stack);
-
 
 /*********
 **********
@@ -119,5 +118,6 @@ int					is_valid_int(char *str);
 int					has_duplicate(int *numbers, int size);
 char				**split_args(char *arg);
 int					*parse_args(int argc, char **argv, int *size);
+int					is_sorted(int *numbers, int size);
 
 #endif

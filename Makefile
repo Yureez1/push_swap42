@@ -9,26 +9,26 @@ ALGORITHM_DIR = srcs/algorithm
 ERRORS_DIR = srcs/errors
 MOVES_DIR = srcs/moves
 PARSING_DIR = srcs/parsing
-OBJ_DIR = objs
-INCLUDES_DIR = inc
 FT_PRINTF_DIR = ft_printf
 LIBFT_DIR = ft_printf/libft
+OBJ_DIR = objs
+INCLUDES_DIR = inc
 
-# Sources files
+# Source files
 SRCS = $(wildcard $(FT_PRINTF_DIR)/*.c) \
-		$(wildcard $(LIBFT_DIR)/*.c) \
-		$(wildcard $(ALGORITHM_DIR)/*.c) \
-		$(wildcard $(ERRORS_DIR)/*.c) \
-		$(wildcard $(MOVES_DIR)/*.c) \
-		$(wildcard $(PARSING_DIR)/*.c) \
-		srcs/main.c
+       $(wildcard $(LIBFT_DIR)/*.c) \
+       $(wildcard $(ALGORITHM_DIR)/*.c) \
+       $(wildcard $(ERRORS_DIR)/*.c) \
+       $(wildcard $(MOVES_DIR)/*.c) \
+       $(wildcard $(PARSING_DIR)/*.c) \
+       srcs/main.c
 
-# Objects files
-OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(notdir $(SRCS)))
+# Object files - maps each source file to a corresponding object file in objs/ with subdirectories
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 INCLUDES = -I$(INCLUDES_DIR) -I$(FT_PRINTF_DIR) -I$(LIBFT_DIR)
 
-# Default setting
+# Default target
 all: $(NAME)
 
 # Final compilation program
@@ -36,32 +36,23 @@ $(NAME): $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 		@echo "\033[0;32mEverything Compiled\033[0m"
 
-$(OBJ_DIR)/%.o: $(ALGORITHM_DIR)/%.c | $(OBJ_DIR)
+# Compilation rule for each object file
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+		mkdir -p $(dir $@)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_DIR)/%.o: $(ERRORS_DIR)/%.c | $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+# Ensure OBJ_DIR exists
+$(OBJ_DIR):
+		mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(MOVES_DIR)/%.c | $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(PARSING_DIR)/%.c | $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(FT_PRINTF_DIR)/%.c | $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(LIBFT_DIR)/%.c | $(OBJ_DIR)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-# Cleaning objects files
+# Cleaning object files
 clean:
 		rm -rf $(OBJ_DIR)
 
 fclean: clean
 		rm -f $(NAME)
 
-# Rebuilding all
+# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re
