@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/18 17:00:47 by julien            #+#    #+#              #
-#    Updated: 2024/11/18 17:55:27 by julien           ###   ########.fr        #
+#    Created: 2024/11/19 13:27:50 by julien            #+#    #+#              #
+#    Updated: 2024/11/19 20:12:54 by julien           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,47 +16,53 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rcs
 HEADER = push_swap.h
-SRCS = srcs/algs/push_more.c srcs/algs/push_swap.c srcs/errors/error.c srcs/init/init.c srcs/moves/push.c srcs/moves/reverse_rot.c srcs/moves/rotate.c srcs/moves/swap.c srcs/parsing/parsing.c srcs/utils/utils.c srcs/main.c
+
+# Fichiers sources
+SRCS = push_more.c push_swap.c error.c init.c \
+       push.c reverse_rot.c rotate.c swap.c \
+       parsing.c utils.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
-ARG ?=
-
-#inclu ft_printf
+# Répertoires pour ft_printf et libft
 PRINTF_DIR = ft_printf/ft_printf
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 
-#inclu libft
-LIBFT_DIR = ft_printf/ft_printf/libft
+LIBFT_DIR = $(PRINTF_DIR)/libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
-all: $(PRINTF_LIB) $(LIBFT_LIB) $(NAME)
+# Règle principale
+all: $(NAME)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
 
-$(NAME): $(OBJS) $(PRINTF_LIB)
+$(NAME): $(OBJS) $(PRINTF_LIB) $(LIBFT_LIB)
 	@echo "Compiling push_swap..."
 	$(CC) $(CFLAGS) $(OBJS) $(PRINTF_LIB) $(LIBFT_LIB) -o $(NAME)
 	@echo "Done !"
 
+# Compilation de ft_printf (qui inclut libft)
+$(PRINTF_LIB): $(LIBFT_LIB)
+	@echo "Compiling ft_printf..."
+	@make -C $(PRINTF_DIR)
+
+# Compilation de libft
+$(LIBFT_LIB):
+	@echo "Compiling libft..."
+	@make -C $(LIBFT_DIR)
+
+# Exécution avec ou sans arguments
 run: $(NAME)
-	@if [ -z "$(ARG)"]; then \
+	@if [ -z "$(ARG)" ]; then \
 		./$(NAME); \
 	else \
 		./$(NAME) $(ARG); \
 	fi
 
-$(PRINTF_LIB):
-	@echo "Compiling ft_printf..."
-	@make -C $(PRINTF_DIR)
-
-$(LIBFT_LIB):
-	@echo "Compiling libft..."
-	@make -C $(LIBFT_DIR)
-
+# Nettoyage
 clean:
-	@echo "Cleaning..."
+	@echo "Cleaning object files..."
 	@rm -f $(OBJS)
 	@make clean -C $(PRINTF_DIR)
 	@make clean -C $(LIBFT_DIR)
@@ -66,8 +72,8 @@ fclean: clean
 	@rm -f $(NAME)
 	@make fclean -C $(PRINTF_DIR)
 	@make fclean -C $(LIBFT_DIR)
-	rm ARG*
+	rm -f ARG*
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run
