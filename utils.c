@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:28:05 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:48 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:31:47 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	index_zero(t_list **stack)
 {
-	t_list	*tmp;
+	t_list	*temp;
 
-	tmp = *stack;
-	while (tmp)
+	temp = *stack;
+	while (temp)
 	{
-		tmp->index = 0;
-		tmp = tmp->next;
+		temp->index = 0;
+		temp = temp->next;
 	}
 }
 
 void	init_index(t_list **stack_a, int len)
 {
-	t_list	*tmp;
+	t_list	*temp;
 	t_list	*current;
 	int		min;
 	int		i;
@@ -42,11 +42,11 @@ void	init_index(t_list **stack_a, int len)
 			if ((int)(__intptr_t)current->content < min && current->index == 0)
 			{
 				min = (int)(__intptr_t)current->content;
-				tmp = current;
+				temp = current;
 			}
 			current = current->next;
 		}
-		tmp->index = i;
+		temp->index = i;
 		i++;
 		len--;
 	}
@@ -54,49 +54,49 @@ void	init_index(t_list **stack_a, int len)
 
 t_list	*find_min(t_list **stack)
 {
-	t_list	*tmp;
+	t_list	*temp;
 	t_list	*min_node;
 	int		min;
 
 	min = INT32_MAX;
-	tmp = *stack;
+	temp = *stack;
 	min_node = NULL;
-	while (tmp)
+	while (temp)
 	{
-		if ((int)(__intptr_t)tmp->content < min)
+		if ((int)(__intptr_t)temp->content < min)
 		{
-			min = (int)(__intptr_t)tmp->content;
-			min_node = tmp;
+			min = (int)(__intptr_t)temp->content;
+			min_node = temp;
 		}
-		tmp = tmp->next;
+		temp = temp->next;
 	}
 	return (min_node);
 }
 
 t_list	*find_max(t_list **stack)
 {
-	t_list	*tmp;
+	t_list	*temp;
 	t_list	*max_node;
 	int		max;
 
 	max = INT32_MIN;
-	tmp = *stack;
+	temp = *stack;
 	max_node = NULL;
-	while (tmp)
+	while (temp)
 	{
-		if ((int)(__intptr_t)tmp->content > max)
+		if ((int)(__intptr_t)temp->content > max)
 		{
-			max = (int)(__intptr_t)tmp->content;
-			max_node = tmp;
+			max = (int)(__intptr_t)temp->content;
+			max_node = temp;
 		}
-		tmp = tmp->next;
+		temp = temp->next;
 	}
 	return (max_node);
 }
 
 int	find_half(t_list **stack, int max, int len)
 {
-	t_list *current;
+	t_list	*current;
 
 	current = *stack;
 	while (len > 0 && current)

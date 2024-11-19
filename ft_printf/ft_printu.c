@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "../libft/libft.h"
 
 void	ft_printu(unsigned int value, int *counter)
 {

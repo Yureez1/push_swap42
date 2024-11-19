@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:45 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:31:01 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:33:21 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	is_in_list(t_list *stack_a, int num)
 
 void	init_lst(char *argv, t_list **stack_a, char **tab)
 {
-	static t_list *tmp;
-	int num;
+	static t_list	*tmp;
+	int				num;
 
 	num = ft_atoi(argv);
 	if (is_in_list(*stack_a, num))

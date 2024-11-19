@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:51 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:34 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:32:21 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	push_next(t_list **a, t_list **b)
 
 void	ps_more(t_list **stack_a, t_list **stack_b, int *start, int *end)
 {
-	int len;
+	int	len;
 
 	len = ft_lstsize(*stack_a);
 	init_index(stack_a, len);

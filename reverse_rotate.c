@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:28:00 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:39 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:30:24 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	rrotate_b(t_list **stack_b, int flag)
 
 void	rrotate_rr(t_list **stack_a, t_list **stack_b)
 {
-	int flag;
+	int	flag;
 
 	flag = 1;
 	rrotate_a(stack_a, flag);

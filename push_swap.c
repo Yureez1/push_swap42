@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:53 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:34:26 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:30:39 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	ps_two(t_list **stack_a)
 	t_list	*tmp;
 
 	tmp = (*stack_a);
-	first = (int)(__intptr_t)(tmp->content);
-	tmp = tmp->next;
-	last = (int)(__intptr_t)(tmp->content);
+	first = (int)(__intptr_t)(temp->content);
+	tmp = temp->next;
+	last = (int)(__intptr_t)(temp->content);
 	if (first > last)
 		swap_a(stack_a, 0);
 }
@@ -106,9 +106,9 @@ void	ps_five(t_list **stack_a, t_list **stack_b)
 
 void	push_swap(t_list **stack_a, t_list **stack_b)
 {
-	int start;
-	int end;
-	int len;
+	int	start;
+	int	end;
+	int	len;
 
 	len = ft_lstsize(*stack_a);
 	start = 0;

@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:28:03 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:39 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:32:49 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 void	swap_a(t_list **stack_a, int flag)
 {
-	t_list	*tmp;
+	t_list	*temp;
 
 	if (!(*stack_a) || !(*stack_a)->next)
 		return ;
-	tmp = (*stack_a)->next;
-	(*stack_a)->next = tmp->next;
-	tmp->next = (*stack_a);
-	(*stack_a) = tmp;
+	temp = (*stack_a)->next;
+	(*stack_a)->next = temp->next;
+	temp->next = (*stack_a);
+	(*stack_a) = temp;
 	if (flag == 0)
 		ft_printf("sa\n");
 }
 
 void	swap_b(t_list **stack_b, int flag)
 {
-	t_list	*tmp;
+	t_list	*temp;
 
 	if (!(*stack_b) || !(*stack_b)->next)
 		return ;
-	tmp = (*stack_b)->next;
-	(*stack_b)->next = tmp->next;
-	tmp->next = (*stack_b);
+	temp = (*stack_b)->next;
+	(*stack_b)->next = temp->next;
+	temp->next = (*stack_b);
 	if (flag == 0)
 		ft_printf("sb\n");
 }
 
 void	swap_ss(t_list **stack_a, t_list **stack_b)
 {
-	int flag;
+	int	flag;
 
 	flag = 1;
 	swap_a(stack_a, flag);

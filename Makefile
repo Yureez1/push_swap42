@@ -18,14 +18,14 @@ ARFLAGS = rcs
 HEADER = push_swap.h
 
 # Fichiers sources
-SRCS = push_more.c push_swap.c error.c init_lst.c \
-       push.c reverse_rotate.c rotate.c swap.c \
-		utils.c main.c \
+SRCS = push_more.c push_swap.c error.c init.c \
+       push.c reverse_rot.c rotate.c swap.c \
+       parsing.c utils.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
 # Répertoires pour ft_printf et libft
-PRINTF_DIR = ft_printf
+PRINTF_DIR = ft_printf/ft_printf
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 
 LIBFT_DIR = $(PRINTF_DIR)/libft

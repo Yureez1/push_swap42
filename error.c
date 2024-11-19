@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:42 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:29:48 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:30:48 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,3 @@ void	error_mes(char *str, t_list **stack_a, char **tab)
 	}
 	exit(EXIT_FAILURE);
 }
-

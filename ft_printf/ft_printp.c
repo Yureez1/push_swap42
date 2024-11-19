@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "ft_printf.h"
 
 size_t	ft_ptrlen(uintptr_t value)

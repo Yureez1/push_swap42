@@ -6,7 +6,7 @@
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:47 by julien            #+#    #+#             */
-/*   Updated: 2024/11/19 13:36:34 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 00:33:07 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	check_param(char *str, t_list **stack_a, char **tab)
 
 int	main(int argc, char **argv)
 {
-	char **tab;
-	t_list *stack_a;
-	t_list *stack_b;
-	int i;
+	char	**tab;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		i;
 
 	i = 0;
 	stack_a = NULL;

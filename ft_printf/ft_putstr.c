@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "../libft/libft.h"
 
 int	ft_putstr(char *value, int *counter)
 {
