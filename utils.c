@@ -14,19 +14,19 @@
 
 void	index_zero(t_list **stack)
 {
-	t_list	*temp;
+	t_list	*tmp;
 
-	temp = *stack;
-	while (temp)
+	tmp = *stack;
+	while (tmp)
 	{
-		temp->index = 0;
-		temp = temp->next;
+		tmp->index = 0;
+		tmp = tmp->next;
 	}
 }
 
 void	init_index(t_list **stack_a, int len)
 {
-	t_list	*temp;
+	t_list	*tmp;
 	t_list	*current;
 	int		min;
 	int		i;
@@ -42,11 +42,11 @@ void	init_index(t_list **stack_a, int len)
 			if ((int)(__intptr_t)current->content < min && current->index == 0)
 			{
 				min = (int)(__intptr_t)current->content;
-				temp = current;
+				tmp = current;
 			}
 			current = current->next;
 		}
-		temp->index = i;
+		tmp->index = i;
 		i++;
 		len--;
 	}
@@ -54,42 +54,42 @@ void	init_index(t_list **stack_a, int len)
 
 t_list	*find_min(t_list **stack)
 {
-	t_list	*temp;
+	t_list	*tmp;
 	t_list	*min_node;
 	int		min;
 
 	min = INT32_MAX;
-	temp = *stack;
+	tmp = *stack;
 	min_node = NULL;
-	while (temp)
+	while (tmp)
 	{
-		if ((int)(__intptr_t)temp->content < min)
+		if ((int)(__intptr_t)tmp->content < min)
 		{
-			min = (int)(__intptr_t)temp->content;
-			min_node = temp;
+			min = (int)(__intptr_t)tmp->content;
+			min_node = tmp;
 		}
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 	return (min_node);
 }
 
 t_list	*find_max(t_list **stack)
 {
-	t_list	*temp;
+	t_list	*tmp;
 	t_list	*max_node;
 	int		max;
 
 	max = INT32_MIN;
-	temp = *stack;
+	tmp = *stack;
 	max_node = NULL;
-	while (temp)
+	while (tmp)
 	{
-		if ((int)(__intptr_t)temp->content > max)
+		if ((int)(__intptr_t)tmp->content > max)
 		{
-			max = (int)(__intptr_t)temp->content;
-			max_node = temp;
+			max = (int)(__intptr_t)tmp->content;
+			max_node = tmp;
 		}
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 	return (max_node);
 }

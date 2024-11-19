@@ -19,9 +19,9 @@ void	ps_two(t_list **stack_a)
 	t_list	*tmp;
 
 	tmp = (*stack_a);
-	first = (int)(__intptr_t)(temp->content);
-	tmp = temp->next;
-	last = (int)(__intptr_t)(temp->content);
+	first = (int)(__intptr_t)(tmp->content);
+	tmp = tmp->next;
+	last = (int)(__intptr_t)(tmp->content);
 	if (first > last)
 		swap_a(stack_a, 0);
 }

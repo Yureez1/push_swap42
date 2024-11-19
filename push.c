@@ -14,24 +14,24 @@
 
 void	push_b(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*temp;
+	t_list	*tmp;
 
 	if (!(*stack_a))
 		return ;
-	temp = (*stack_a);
+	tmp = (*stack_a);
 	(*stack_a) = (*stack_a)->next;
-	ft_lstadd_front(stack_b, temp);
+	ft_lstadd_front(stack_b, tmp);
 	ft_printf("pb\n");
 }
 
 void	push_a(t_list **stack_a, t_list **stack_b)
 {
-	t_list *temp;
+	t_list *tmp;
 
 	if (!(*stack_b))
 		return ;
-	temp = (*stack_b);
+	tmp = (*stack_b);
 	(*stack_b) = (*stack_b)->next;
-	ft_lstadd_front(stack_a, temp);
+	ft_lstadd_front(stack_a, tmp);
 	ft_printf("pa\n");
 }
