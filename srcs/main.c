@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 17:12:42 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/11/05 15:20:26 by jbanchon         ###   ########.fr       */
+/*   Created: 2024/11/18 13:57:34 by julien            #+#    #+#             */
+/*   Updated: 2024/11/18 17:51:48 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
-	int		*numbers;
-	int		stack_size;
-	
-	a = NULL;
-	b = NULL;
-	if (argc < 2)
-		return (0);
-	if (argc == 2 && is_valid_int(argv[1]) && ft_atoi(argv[1]) == 1)
-		return (0);
-	numbers = parse_args(argc - 1, argv + 1, &stack_size);
-	if (!numbers)
-		errors_msg("Error\n", NULL);
-	a = create_stack(numbers, stack_size);
-	free(numbers);
-	if (!a)
-		errors_msg("Error\n", NULL);
-	push_chunks_to_b(&a, &b, stack_size);
-	free_stack(&a);
-	free_stack(&b);
+	char **tab;
+	t_list *stack_a;
+	t_list *stack_b;
+	int i;
+
+	tab = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
+	i = 0;
+	if (argc == 2)
+	{
+		tab = ft_split(argv[1], ' ');
+		while (tab[i])
+			check_parameter(tab[i++], &stack_a, tab);
+	}
+	else if (argc > 2)
+	{
+		while (argv[i++])
+			check_parameter(argv[i++], &stack_a, tab);
+	}
+	if (!is_sorted(&stack_a))
+		pa(&stack_a, &stack_b);
+	free_all(tab, &stack_a, &stack_b, argc);
+	exit(EXIT_SUCCESS);
 	return (0);
 }

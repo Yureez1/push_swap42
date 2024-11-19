@@ -1,58 +1,73 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: julien <julien@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/18 17:00:47 by julien            #+#    #+#              #
+#    Updated: 2024/11/18 17:55:27 by julien           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = push_swap
+CC = clang
+CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = rcs
+HEADER = push_swap.h
+SRCS = srcs/algs/push_more.c srcs/algs/push_swap.c srcs/errors/error.c srcs/init/init.c srcs/moves/push.c srcs/moves/reverse_rot.c srcs/moves/rotate.c srcs/moves/swap.c srcs/parsing/parsing.c srcs/utils/utils.c srcs/main.c
 
-# Compilation and options
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+OBJS = $(SRCS:.c=.o)
 
-# Path to directories
-ALGORITHM_DIR = srcs/algorithm
-ERRORS_DIR = srcs/errors
-MOVES_DIR = srcs/moves
-PARSING_DIR = srcs/parsing
-FT_PRINTF_DIR = ft_printf
-LIBFT_DIR = ft_printf/libft
-OBJ_DIR = objs
-INCLUDES_DIR = inc
+ARG ?=
 
-# Source files
-SRCS = $(wildcard $(FT_PRINTF_DIR)/*.c) \
-       $(wildcard $(LIBFT_DIR)/*.c) \
-       $(wildcard $(ALGORITHM_DIR)/*.c) \
-       $(wildcard $(ERRORS_DIR)/*.c) \
-       $(wildcard $(MOVES_DIR)/*.c) \
-       $(wildcard $(PARSING_DIR)/*.c) \
-       srcs/main.c
+#inclu ft_printf
+PRINTF_DIR = ft_printf/ft_printf
+PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 
-# Object files - maps each source file to a corresponding object file in objs/ with subdirectories
-OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
+#inclu libft
+LIBFT_DIR = ft_printf/ft_printf/libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -I$(INCLUDES_DIR) -I$(FT_PRINTF_DIR) -I$(LIBFT_DIR)
+all: $(PRINTF_LIB) $(LIBFT_LIB) $(NAME)
 
-# Default target
-all: $(NAME)
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(HEADER)
 
-# Final compilation program
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-		@echo "\033[0;32mEverything Compiled\033[0m"
+$(NAME): $(OBJS) $(PRINTF_LIB)
+	@echo "Compiling push_swap..."
+	$(CC) $(CFLAGS) $(OBJS) $(PRINTF_LIB) $(LIBFT_LIB) -o $(NAME)
+	@echo "Done !"
 
-# Compilation rule for each object file
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-		mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+run: $(NAME)
+	@if [ -z "$(ARG)"]; then \
+		./$(NAME); \
+	else \
+		./$(NAME) $(ARG); \
+	fi
 
-# Ensure OBJ_DIR exists
-$(OBJ_DIR):
-		mkdir -p $(OBJ_DIR)
+$(PRINTF_LIB):
+	@echo "Compiling ft_printf..."
+	@make -C $(PRINTF_DIR)
 
-# Cleaning object files
+$(LIBFT_LIB):
+	@echo "Compiling libft..."
+	@make -C $(LIBFT_DIR)
+
 clean:
-		rm -rf $(OBJ_DIR)
+	@echo "Cleaning..."
+	@rm -f $(OBJS)
+	@make clean -C $(PRINTF_DIR)
+	@make clean -C $(LIBFT_DIR)
 
 fclean: clean
-		rm -f $(NAME)
+	@echo "Full cleaning..."
+	@rm -f $(NAME)
+	@make fclean -C $(PRINTF_DIR)
+	@make fclean -C $(LIBFT_DIR)
+	rm ARG*
 
-# Rebuild everything
 re: fclean all
 
 .PHONY: all clean fclean re

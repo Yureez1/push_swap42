@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   reverse_rot.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 13:57:27 by julien            #+#    #+#             */
+/*   Created: 2024/11/18 13:57:28 by julien            #+#    #+#             */
 /*   Updated: 2024/11/18 17:28:45 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	push(t_list **to, t_list **from)
+void	reverse_rot(t_list **stack)
 {
 	t_list	*tmp;
+	t_list	*last;
 
-	if (*from)
+	if (*stack && (*stack)->next)
 	{
-		tmp = *from;
-		*from = (*from)->next;
-		tmp->next = *to;
-		*to = tmp;
+		tmp = *stack;
+		while (tmp->next->next)
+			tmp = tmp->next;
+		last = tmp->next;
+		tmp->next = NULL;
+		last->next = *stack;
+		*stack = last;
 	}
 }
 
-void	pa(t_list **a, t_list **b)
+void	rra(t_list **a)
 {
-	push(a, b);
-	ft_printf("pa\n");
+	reverse_rot(a);
+	ft_printf("rra\n");
 }
 
-void	pb(t_list **a, t_list **b)
+void	rrb(t_list **b)
 {
-	push(b, a);
-	ft_printf("pb\n");
+	reverse_rot(b);
+	ft_printf("rrb\n");
 }

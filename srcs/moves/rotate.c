@@ -3,49 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:45:49 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/25 19:02:06 by jbanchon         ###   ########.fr       */
+/*   Created: 2024/11/18 13:57:30 by julien            #+#    #+#             */
+/*   Updated: 2024/11/18 17:28:45 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	rotate(t_stack **stack)
+void	rotate(t_list **stack)
 {
-	t_stack	*first;
-	t_stack	*temp;
+	t_list	*tmp;
+	t_list	*first;
 
 	if (*stack && (*stack)->next)
 	{
+		tmp = *stack;
 		first = *stack;
 		*stack = (*stack)->next;
-		temp = *stack;
-		while (temp->next != NULL)
-		{
-			temp = temp->next;
-		}
-		temp->next = first;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = first;
 		first->next = NULL;
 	}
 }
 
-void	ra(t_stack **a)
+void	ra(t_list **a)
 {
+	rotate(a);
 	ft_printf("ra\n");
-	rotate(a);
 }
 
-void	rb(t_stack **b)
+void	rb(t_list **b)
 {
+	rotate(b);
 	ft_printf("rb\n");
-	rotate(b);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_list **a, t_list **b)
 {
-	ft_printf("rr\n");
 	rotate(a);
 	rotate(b);
+	ft_printf("rr\n");
 }

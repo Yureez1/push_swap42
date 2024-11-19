@@ -3,33 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 15:28:03 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/11/05 15:31:49 by jbanchon         ###   ########.fr       */
+/*   Created: 2024/11/18 16:52:54 by julien            #+#    #+#             */
+/*   Updated: 2024/11/18 17:28:45 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-int	is_valid_int(char *str)
+int	is_integer(char *str)
 {
-	long	value;
-	int		i;
+	long long	res;
+	int			sign;
 
-	i = 0;
-	if (str[i] == '\0')
-		errors_msg("Arguments are empty", NULL);
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
+	res = 0;
+	sign = 1;
+	if (*str == '-' || *str == '+')
 	{
-		if (!ft_isdigit(str[i]) && str[i] != '-' && str[i] != '+')
-			errors_msg("Arguments must only contain digits", NULL);
-		i++;
+		if (*str == '-')
+			sign = -1;
+		str++;
+		if (!*str)
+			return (0);
 	}
-	value = ft_atol(str);
-	if (value < INT_MIN || value > INT_MAX)
-		errors_msg("Argument is out of int limits", NULL);
-	return (SUCCESS);
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		res = res * 10 + (*str - '0');
+		if ((sign == 1 && res > INT_MAX))
+			return (0);
+		if ((sign == -1 && res > INT_MIN))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+void	check_parameter(char *str, t_list **stack_a, char **tab)
+{
+	if (!is_integer(str))
+		error_msg("Invalid parameter.", stack_a, tab);
+	init_list(str, stack_a, tab);
 }

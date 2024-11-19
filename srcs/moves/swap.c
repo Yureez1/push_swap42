@@ -3,47 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:45:51 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/10/25 19:02:02 by jbanchon         ###   ########.fr       */
+/*   Created: 2024/11/18 13:57:31 by julien            #+#    #+#             */
+/*   Updated: 2024/11/18 17:28:45 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void	swap(t_stack **stack)
+void	swap(t_list **stack)
 {
-	t_stack	*first;
-	t_stack	*second;
+	t_list	*tmp;
 
-	first = NULL;
-	second = NULL;
 	if (*stack && (*stack)->next)
 	{
-		first = *stack;
-		second = (*stack)->next;
+		tmp = *stack;
+		*stack = (*stack)->next;
+		tmp->next = (*stack)->next;
+		(*stack)->next = tmp;
 	}
-	first->next = second->next;
-	second->next = first;
-	*stack = second;
 }
 
-void	sa(t_stack **a)
+void	sa(t_list **a)
 {
+	swap(a);
 	ft_printf("sa\n");
-	swap(a);
 }
 
-void	sb(t_stack **b)
+void	sb(t_list **b)
 {
+	swap(b);
 	ft_printf("sb\n");
-	swap(b);
-}
-
-void	ss(t_stack **a, t_stack **b)
-{
-	ft_printf("ss\n");
-	swap(a);
-	swap(b);
 }

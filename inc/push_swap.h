@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 17:02:10 by jbanchon          #+#    #+#             */
-/*   Updated: 2024/11/05 15:07:36 by jbanchon         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:48:04 by julien           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../ft_printf.h"
-# include "../ft_printf/libft/libft.h"
+# include "../ft_printf/ft_printf/ft_printf.h"
+# include "../ft_printf/ft_printf/libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -29,12 +29,12 @@
 # define GREY "\033[1;30m"
 # define RESET "\033[0m"
 
-typedef struct s_stack
-{
-	int				value;
-	int				index;
-	struct s_stack	*next;
-}					t_stack;
+// typedef struct s_data
+// {
+// 	int				content;
+// 	int				index;
+// 	struct s_data	*next;
+// }					t_list;
 
 /********************
 *********************
@@ -42,22 +42,35 @@ typedef struct s_stack
 *********************
 *********************/
 
-t_stack				*create_stack(int *numbers, int stack_size);
-int					calculate_chunks_size(int stack_size);
-int					calculate_chunks(int stack_size, int chunk_size);
-int					find_max_in_chunk(t_stack **stack, int chunk_size);
-int					find_min_in_chunk(t_stack **stack, int chunk_size);
+int		is_sorted(t_list **stack);
+void	push_next(t_list **stack_a, t_list **stack_b);
+void	push_more(t_list **stack_a, t_list **stack_b, int *start, int *end);
+void	push_two(t_list **stack_a);
+void	push_three(t_list **stack_a);
+void	push_four(t_list **stack_a, t_list **stack_b);
+void	push_five(t_list **stack_a, t_list **stack_b);
+void	push_swap(t_list **stack_a, t_list **stack_b);
 
-/*******************
-********************
-**Stack Operations**
-********************
-********************/
+/*******
+********
+**Init**
+********
+********/
 
-void				push_min_max_to_b(t_stack **a, t_stack **b, int chunk_size);
-void				sort_and_push_back_to_a(t_stack **a, t_stack **b);
-void				push_chunks_to_b(t_stack **a, t_stack **b, int stack_size);
-void				free_stack(t_stack **stack);
+int		is_in_list(t_list *stack_a, int content);
+void	init_list(char *argv, t_list **stack_a, char **tab);
+
+/********
+*********
+**Utils**
+*********
+*********/
+
+void	reset_index(t_list **stack);
+void	index_init(t_list **stack_a, int len);
+t_list	*find_min(t_list **stack);
+t_list	*find_max(t_list **stack);
+int		find_half(t_list **stack, int max, int len);
 
 /*********
 **********
@@ -65,48 +78,9 @@ void				free_stack(t_stack **stack);
 **********
 **********/
 
-int					errors_msg(char *message, int *numbers);
-
-/*******
-********
-**Swap**
-********
-********/
-
-void				swap(t_stack **stack);
-void				sa(t_stack **a);
-void				sb(t_stack **b);
-
-/*******
-********
-**Push**
-********
-********/
-
-void				push(t_stack **src, t_stack **dest);
-void				pb(t_stack **a, t_stack **b);
-void				pa(t_stack **a, t_stack **b);
-
-/*********
-**********
-**Rotate**
-**********
-**********/
-
-void				rotate(t_stack **stack);
-void				ra(t_stack **a);
-void				rb(t_stack **b);
-void				rr(t_stack **a, t_stack **b);
-/*****************
-******************
-**Reverse rotate**
-******************
-******************/
-
-void				reverse_rotate(t_stack **stack);
-void				rrr(t_stack *a, t_stack *b);
-void				rra(t_stack **a);
-void				rrb(t_stack **b);
+void	free_list(t_list **stack);
+void	free_all(char **tab, t_list **stack_a, t_list **stack_b, int argc);
+void	error_msg(char *msg, t_list **stack, char **tab);
 
 /**********
 ***********
@@ -114,10 +88,49 @@ void				rrb(t_stack **b);
 ***********
 ***********/
 
-int					is_valid_int(char *str);
-int					has_duplicate(int *numbers, int size);
-char				**split_args(char *arg);
-int					*parse_args(int argc, char **argv, int *size);
-int					is_sorted(int *numbers, int size);
+int		is_integer(char *str);
+void	check_parameter(char *str, t_list **stack_a, char **tab);
+
+/*******
+********
+**Swap**
+********
+********/
+
+void	swap(t_list **stack);
+void	sa(t_list **a);
+void	sb(t_list **b);
+
+/*******
+********
+**Push**
+********
+********/
+
+void	push(t_list **src, t_list **dest);
+void	pb(t_list **a, t_list **b);
+void	pa(t_list **a, t_list **b);
+
+/*********
+**********
+**Rotate**
+**********
+**********/
+
+void	rotate(t_list **stack);
+void	ra(t_list **a);
+void	rb(t_list **b);
+void	rr(t_list **a, t_list **b);
+
+/*****************
+******************
+**Reverse rotate**
+******************
+******************/
+
+void	reverse_rotate(t_list **stack);
+void	rrr(t_list *a, t_list *b);
+void	rra(t_list **a);
+void	rrb(t_list **b);
 
 #endif
