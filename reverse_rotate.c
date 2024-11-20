@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:28:00 by julien            #+#    #+#             */
-/*   Updated: 2024/11/20 00:30:24 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 14:24:26 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrotate_a(t_list **stack_a, int flag)
+void	rra(t_list **stack_a, int flag)
 {
 	t_list	*second_last;
 	t_list	*last;
@@ -33,7 +33,7 @@ void	rrotate_a(t_list **stack_a, int flag)
 		ft_printf("rra\n");
 }
 
-void	rrotate_b(t_list **stack_b, int flag)
+void	rrb(t_list **stack_b, int flag)
 {
 	t_list	*second_last;
 	t_list	*last;
@@ -54,12 +54,12 @@ void	rrotate_b(t_list **stack_b, int flag)
 		ft_printf("rrb\n");
 }
 
-void	rrotate_rr(t_list **stack_a, t_list **stack_b)
+void	rrr(t_list **stack_a, t_list **stack_b)
 {
 	int	flag;
 
 	flag = 1;
-	rrotate_a(stack_a, flag);
-	rrotate_b(stack_b, flag);
+	rra(stack_a, flag);
+	rrb(stack_b, flag);
 	ft_printf("rrr\n");
 }

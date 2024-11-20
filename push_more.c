@@ -3,53 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   push_more.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:51 by julien            #+#    #+#             */
-/*   Updated: 2024/11/20 00:32:21 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:10:27 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sorted(t_list **stack)
+int	is_sorted(t_list **stack)
 {
-	t_list	*cu;
+	t_list	*cur;
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return (1);
-	cu = (*stack);
-	while ((int)(__intptr_t)cu->content < (int)(__intptr_t)cu->next->content)
+	cur = (*stack);
+	while ((int)(__intptr_t)cur->content < (int)(__intptr_t)cur->next->content)
 	{
-		if (cu->next->next == NULL)
+		if (cur->next->next == NULL)
 			return (1);
-		cu = cu->next;
+		cur = cur->next;
 	}
 	return (0);
 }
 
-void	push_next(t_list **a, t_list **b)
+void	push_next(t_list **stack_a, t_list **stack_b)
 {
 	int		half;
-	t_list	*t;
+	t_list	*cur;
 
-	t = NULL;
-	while (*b)
+	cur = NULL;
+	while (*stack_b)
 	{
-		t = find_max(b);
-		half = find_half(b, (int)(__intptr_t)t->content, (ft_lstsize(*b) / 2));
-		while ((int)(__intptr_t)(*b)->content != (int)(__intptr_t)t->content)
+		cur = find_max(stack_b);
+		half = find_half(stack_b, (int)(__intptr_t)cur->content,
+				(ft_lstsize(*stack_b) / 2));
+		while ((int)(__intptr_t)(*stack_b)->content != (int)(__intptr_t)cur->content)
 		{
 			if (half == 1)
-				rotate_b(b, 0);
+				rb(stack_b, 0);
 			else
-				rrotate_b(b, 0);
+				rrb(stack_b, 0);
 		}
-		push_a(a, b);
+		pa(stack_a, stack_b);
 	}
 }
 
-void	ps_more(t_list **stack_a, t_list **stack_b, int *start, int *end)
+void	push_more(t_list **stack_a, t_list **stack_b, int *start, int *end)
 {
 	int	len;
 
@@ -59,19 +60,19 @@ void	ps_more(t_list **stack_a, t_list **stack_b, int *start, int *end)
 	{
 		if ((*stack_a)->index <= (*start))
 		{
-			push_b(stack_a, stack_b);
-			rotate_b(stack_b, 0);
+			pb(stack_a, stack_b);
+			rb(stack_b, 0);
 			(*start)++;
 			(*end)++;
 		}
 		else if ((*stack_a)->index > (*start) && (*stack_a)->index < (*end))
 		{
-			push_b(stack_a, stack_b);
+			pb(stack_a, stack_b);
 			(*start)++;
 			(*end)++;
 		}
 		else if ((*stack_a)->index >= (*end))
-			rotate_a(stack_a, 0);
+			ra(stack_a, 0);
 	}
 	push_next(stack_a, stack_b);
 }

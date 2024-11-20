@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:42 by julien            #+#    #+#             */
-/*   Updated: 2024/11/20 00:30:48 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 14:30:06 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_lst(t_list **stack)
+void	free_list(t_list **stack)
 {
 	t_list	*tmp;
 
@@ -39,24 +39,24 @@ void	free_all(char **tab, t_list **stack_a, t_list **stack_b, int argc)
 			i++;
 		}
 		free(tab);
-		free_lst(stack_a);
-		free_lst(stack_b);
+		free_list(stack_a);
+		free_list(stack_b);
 	}
 	else
 	{
-		free_lst(stack_a);
-		free_lst(stack_b);
+		free_list(stack_a);
+		free_list(stack_b);
 		if (tab != NULL)
 			free(tab);
 	}
 }
 
-void	error_mes(char *str, t_list **stack_a, char **tab)
+void	error_msg(char *str, t_list **stack_a, char **tab)
 {
 	int	i;
 
 	ft_printf("Error.\n%s", str);
-	free_lst(stack_a);
+	free_list(stack_a);
 	i = 0;
 	if (tab != NULL)
 	{
@@ -66,7 +66,7 @@ void	error_mes(char *str, t_list **stack_a, char **tab)
 			i++;
 		}
 		free(tab);
-		free_lst(stack_a);
+		free_list(stack_a);
 	}
 	exit(EXIT_FAILURE);
 }

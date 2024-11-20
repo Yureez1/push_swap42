@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:58 by julien            #+#    #+#             */
-/*   Updated: 2024/11/20 00:31:59 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 14:21:15 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_b(t_list **stack_a, t_list **stack_b)
+void	pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*temp;
+	t_list	*tmp;
 
 	if (!(*stack_a))
 		return ;
-	temp = (*stack_a);
+	tmp = (*stack_a);
 	(*stack_a) = (*stack_a)->next;
-	ft_lstadd_front(stack_b, temp);
+	ft_lstadd_front(stack_b, tmp);
 	ft_printf("pb\n");
 }
 
-void	push_a(t_list **stack_a, t_list **stack_b)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*temp;
+	t_list	*tmp;
 
 	if (!(*stack_b))
 		return ;
-	temp = (*stack_b);
+	tmp = (*stack_b);
 	(*stack_b) = (*stack_b)->next;
-	ft_lstadd_front(stack_a, temp);
+	ft_lstadd_front(stack_a, tmp);
 	ft_printf("pa\n");
 }

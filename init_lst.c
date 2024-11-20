@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lst.c                                         :+:      :+:    :+:   */
+/*   init_list.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julien <julien@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbanchon <jbanchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 13:27:45 by julien            #+#    #+#             */
-/*   Updated: 2024/11/20 00:33:21 by julien           ###   ########.fr       */
+/*   Updated: 2024/11/20 14:30:06 by jbanchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// 
 int	is_in_list(t_list *stack_a, int num)
 {
 	if (!stack_a)
@@ -25,16 +26,16 @@ int	is_in_list(t_list *stack_a, int num)
 	return (0);
 }
 
-void	init_lst(char *argv, t_list **stack_a, char **tab)
+void	init_list(char *argv, t_list **stack_a, char **tab)
 {
 	static t_list	*tmp;
 	int				num;
 
 	num = ft_atoi(argv);
 	if (is_in_list(*stack_a, num))
-		error_mes("There is a parameter twice.", stack_a, tab);
+		error_msg("There is a parameter twice.", stack_a, tab);
 	tmp = ft_lstnew((void *)(__intptr_t)num);
 	if (!tmp)
-		error_mes("Failed to create new node.", stack_a, tab);
+		error_msg("Failed to create new node.", stack_a, tab);
 	ft_lstadd_back(stack_a, tmp);
 }

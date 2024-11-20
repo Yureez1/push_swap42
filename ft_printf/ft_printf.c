@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "ft_printf.h"
 
 void	ft_type(const char c, va_list args, int *counter)
